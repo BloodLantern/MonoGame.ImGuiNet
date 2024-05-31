@@ -262,9 +262,9 @@ public class ImGuiRenderer
             >= Keys.F1 and <= Keys.F12 => ImGuiKey.F1 + (key - Keys.F1),
             Keys.NumLock => ImGuiKey.NumLock,
             Keys.Scroll => ImGuiKey.ScrollLock,
-            Keys.LeftShift => ImGuiKey.ModShift,
-            Keys.LeftControl => ImGuiKey.ModCtrl,
-            Keys.LeftAlt => ImGuiKey.ModAlt,
+            Keys.LeftShift => ImGuiKey.ImGuiMod_Shift,
+            Keys.LeftControl => ImGuiKey.ImGuiMod_Ctrl,
+            Keys.LeftAlt => ImGuiKey.ImGuiMod_Alt,
             Keys.OemSemicolon => ImGuiKey.Semicolon,
             Keys.OemPlus => ImGuiKey.Equal,
             Keys.OemComma => ImGuiKey.Comma,
@@ -347,7 +347,7 @@ public class ImGuiRenderer
 
         for (int n = 0; n < drawData.CmdListsCount; n++)
         {
-            ImDrawListPtr cmdList = drawData.CmdLists[n];
+            ImDrawListPtr cmdList = drawData.CmdLists + n;
 
             fixed (void* vtxDstPtr = &_vertexData[vtxOffset * DrawVertDeclaration.Size])
             fixed (void* idxDstPtr = &_indexData[idxOffset * sizeof(ushort)])
@@ -375,7 +375,7 @@ public class ImGuiRenderer
 
         for (int n = 0; n < drawData.CmdListsCount; n++)
         {
-            ImDrawListPtr cmdList = drawData.CmdLists[n];
+            ImDrawListPtr cmdList = drawData.CmdLists + n;
 
             for (int cmdi = 0; cmdi < cmdList.CmdBuffer.Size; cmdi++)
             {
