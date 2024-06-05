@@ -133,9 +133,6 @@ public class ImGuiRenderer
         ImGui.Render();
 
         RenderDrawData(ImGui.GetDrawData());
-
-        ImGui.UpdatePlatformWindows();
-        ImGui.RenderPlatformWindowsDefault();
     }
 
     #endregion ImGuiRenderer
