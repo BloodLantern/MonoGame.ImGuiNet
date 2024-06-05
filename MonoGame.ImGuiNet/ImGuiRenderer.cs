@@ -132,7 +132,10 @@ public class ImGuiRenderer
     {
         ImGui.Render();
 
-        unsafe { RenderDrawData(ImGui.GetDrawData()); }
+        RenderDrawData(ImGui.GetDrawData());
+
+        ImGui.UpdatePlatformWindows();
+        ImGui.RenderPlatformWindowsDefault();
     }
 
     #endregion ImGuiRenderer
